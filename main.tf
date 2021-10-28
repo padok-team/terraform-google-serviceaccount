@@ -1,6 +1,20 @@
-# Here you can reference 2 type of terraform objects :
-# 1. Ressources from you provider of choice
-# 2. Modules from official repositories which include modules from the following github organizations
-#     - AWS: https://github.com/terraform-aws-modules
-#     - GCP: https://github.com/terraform-google-modules
-#     - Azure: https://github.com/Azure
+# Create our service account
+resource "google_service_account" "this" {
+  account_id   = var.account_id
+  display_name = var.display_name
+  project      = var.project
+}
+
+# Add roles to service account
+resource "google_project_iam_member" "this" {
+  for_each = toset(var.roles)
+  project  = var.project
+  role     = each.key
+  member   = "serviceAccount:${google_service_account.this.email}"
+}
+
+# Generate a key for our service account
+resource "google_service_account_key" "this" {
+  count              = var.create_key == true ? 1 : 0
+  service_account_id = google_service_account.this.name
+}

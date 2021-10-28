@@ -1,20 +1,34 @@
-variable "example_of_required_variable" {
+variable "project" {
   type        = string
-  description = "Short description of the variable"
+  description = "The ID of the project that the service account will be created in. Defaults to the provider project configuration."
 }
 
-variable "example_of_variable_with_default_value" {
+variable "account_id" {
   type        = string
-  description = "Short description of the variable"
-  default     = "default_value"
+  description = "The account id that is used to generate the service account email address and a stable unique id."
 }
 
-variable "example_with_validation" {
+variable "display_name" {
+  type        = string
+  description = "The display name for the service account. Can be updated without creating a new resource."
+}
+
+# variable "email" {
+#   type        = string
+#   description = "The email for a human user"
+# }
+
+variable "create_key" {
+  type        = bool
+  description = "Set to true to generate a key for this service account."
+  default     = false
+}
+
+variable "roles" {
+  description = "A list of roles for the service account"
   type        = list(string)
-  description = "Short description of the variable"
 
-  validation {
-    condition     = length(var.example_with_validation) >= 2
-    error_message = "Error message which explains what's required and finished with a dot ."
-  }
+  default = [
+    "roles/viewer",
+  ]
 }
