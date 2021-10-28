@@ -6,6 +6,10 @@ variable "project" {
 variable "account_id" {
   type        = string
   description = "The account id that is used to generate the service account email address and a stable unique id."
+  validation {
+    condition     = can(regex("[a-z]([-a-z0-9]*[a-z0-9])", var.account_id)) && length(var.account_id) >= 6 && length(var.account_id) <= 30
+    error_message = "The account_id is not RFC1035 compliant."
+  }
 }
 
 variable "display_name" {
