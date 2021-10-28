@@ -13,11 +13,6 @@ variable "display_name" {
   description = "The display name for the service account. Can be updated without creating a new resource."
 }
 
-# variable "email" {
-#   type        = string
-#   description = "The email for a human user"
-# }
-
 variable "create_key" {
   type        = bool
   description = "Set to true to generate a key for this service account."

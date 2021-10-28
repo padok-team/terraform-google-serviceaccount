@@ -11,7 +11,7 @@ module "viewer-service-account" {
   project      = "padok-cloud-factory"
   account_id   = "viewer"
   display_name = "The global viewer service account"
-  create_key   = false
+  create_key   = true
   roles = [
     "roles/viewer",
   ]
