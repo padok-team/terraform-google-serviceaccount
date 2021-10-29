@@ -31,17 +31,12 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_account_id"></a> [account\_id](#input\_account\_id) | The account id that is used to generate the service account email address and a stable unique id. | `string` | n/a | yes |
-| <a name="input_display_name"></a> [display\_name](#input\_display\_name) | The display name for the service account. Can be updated without creating a new resource. | `string` | n/a | yes |
-| <a name="input_project"></a> [project](#input\_project) | The ID of the project that the service account will be created in. Defaults to the provider project configuration. | `string` | n/a | yes |
-| <a name="input_create_key"></a> [create\_key](#input\_create\_key) | Set to true to generate a key for this service account. | `bool` | `false` | no |
-| <a name="input_roles"></a> [roles](#input\_roles) | A list of roles for the service account | `list(string)` | <pre>[<br>  "roles/viewer"<br>]</pre> | no |
+| <a name="input_list_serviceaccount"></a> [list\_serviceaccount](#input\_list\_serviceaccount) | test | <pre>map(object({<br>    permissions = list(string),<br>    key         = optional(bool),<br>    description = string<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_email"></a> [email](#output\_email) | n/a |
 | <a name="output_service_account_private_key"></a> [service\_account\_private\_key](#output\_service\_account\_private\_key) | n/a |
 | <a name="output_service_account_public_key"></a> [service\_account\_public\_key](#output\_service\_account\_public\_key) | n/a |
 <!-- END_TF_DOCS -->
