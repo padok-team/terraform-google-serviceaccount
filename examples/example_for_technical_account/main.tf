@@ -17,7 +17,7 @@ module "service_account" {
         "iam.roles.get",
         "iam.roles.list"
       ]
-      predifined_roles = ["roles/run.admin", "roles/gkehub.gatewayAdmin"]
+      roles = ["roles/run.admin", "roles/gkehub.gatewayAdmin"]
       description      = "Service account for managing IAM roles"
       key              = false
     }
@@ -26,7 +26,7 @@ module "service_account" {
         "cloudsql.instances.get",
         "cloudsql.instances.login"
       ]
-      predifined_roles = [""]
+      roles = []
       description      = "Service account for Cloud SQL Instance"
       key              = true
     }
@@ -44,4 +44,12 @@ output "service_account_public_key" {
 
 output "service_account_email" {
   value = module.service_account.service_account_email
+}
+
+output "test_debug_roles" {
+  value = module.service_account.test_debug_roles
+}
+
+output "test_debug_roles_permissions" {
+  value = module.service_account.test_debug_permissions
 }

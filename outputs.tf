@@ -10,3 +10,11 @@ output "service_account_public_key" {
 output "service_account_email" {
   value = { for k, v in var.list_serviceaccount : k => google_service_account.this[k].email }
 }
+
+output "test_debug_roles" {
+  value = local.roles
+}
+
+output "test_debug_permissions" {
+  value = local.roles_permissions
+}
