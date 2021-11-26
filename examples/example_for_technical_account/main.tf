@@ -17,7 +17,34 @@ module "service_account" {
         "iam.roles.get",
         "iam.roles.list"
       ]
-      roles = ["roles/run.admin", "roles/gkehub.gatewayAdmin"]
+      roles = [
+    "roles/apigateway.admin",
+    "roles/cloudbuild.builds.builder",
+    "roles/cloudfunctions.admin",
+    "roles/cloudsql.admin",
+    "roles/compute.admin",
+    "roles/container.admin",
+    "roles/dns.admin",
+    "roles/domains.admin",
+    "roles/firebase.admin",
+    "roles/firebasestorage.admin",
+    "roles/gkehub.admin",
+    "roles/iam.securityAdmin",
+    "roles/logging.admin",
+    "roles/memcache.admin",
+    "roles/monitoring.admin",
+    "roles/networkmanagement.admin",
+    "roles/pubsub.admin",
+    "roles/redis.admin",
+    "roles/run.admin",
+    "roles/secretmanager.admin",
+    "roles/securitycenter.admin",
+    "roles/servicebroker.admin",
+    "roles/servicenetworking.networksAdmin",
+    "roles/storage.admin",
+    "roles/vpcaccess.admin",
+    "roles/iap.admin",
+    "roles/iap.httpsResourceAccessor"]
       description      = "Service account for managing IAM roles"
       key              = false
     }
@@ -51,5 +78,5 @@ output "test_debug_roles" {
 }
 
 output "test_debug_roles_permissions" {
-  value = module.service_account.test_debug_permissions
+  value = module.service_account.excluded_permissions
 }

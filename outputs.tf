@@ -15,6 +15,6 @@ output "test_debug_roles" {
   value = local.roles
 }
 
-output "test_debug_permissions" {
-  value = local.roles_permissions
+output "excluded_permissions" {
+  value = local.list_of_excluded_permissions
 }
