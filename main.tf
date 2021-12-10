@@ -1,5 +1,5 @@
 data "google_iam_role" "roles" {
-  for_each = toset(local.roles)
+  for_each = toset(local.data_roles)
   name = each.value
 }
 
@@ -7,13 +7,17 @@ data "google_project" "project" {
 }
 
 locals {
-  roles = flatten([for k,v in var.list_serviceaccount : v.roles])
-
+  //roles = flatten([for k,v in var.list_serviceaccount : v.roles])
+  data_roles = flatten([for k,v in var.list_serviceaccount : [for role in v.roles : role if !contains(local.roles_blacklist,role)]])
+  roles_blacklist = ["roles/iam.securityAdmin"]
   roles_permissions = {
-    for k, v in var.list_serviceaccount : k => flatten([for r in v.roles : [flatten(data.google_iam_role.roles[r].included_permissions)]])
+    for k, v in var.list_serviceaccount : k => flatten([for r in [for role in v.roles : role if !contains(local.roles_blacklist,role)] : [flatten(data.google_iam_role.roles[r].included_permissions)]])
+  }
+  member_roles = {
+    for k, v in var.list_serviceaccount : k => [for role in v.roles : role if contains(local.roles_blacklist,role)]
   }
 
-  organization_permissions = "^(securitycenter|earlyaccesscenter|riskmanager|compute\\.organizations|chroniclesm|cloudsupport|consumerprocurement|cloudprivatecatalogproducer|accesscontextmanager|assuredworkloads|resourcemanager|orgpolicy|commerceoffercatalog).*$"
+  organization_permissions = "^(billing|securitycenter|earlyaccesscenter|riskmanager|compute\\.organizations|chroniclesm|cloudsupport|consumerprocurement|cloudprivatecatalogproducer|accesscontextmanager|assuredworkloads|resourcemanager|orgpolicy|commerceoffercatalog).*$"
   list_of_excluded_permissions =  concat(
     [for k,v in data.google_iam_testable_permissions.unsupported.permissions : v.name],
     [
@@ -21,14 +25,11 @@ locals {
     "compute.securityPolicies.move",
     "compute.securityPolicies.removeAssociation",
     "compute.securityPolicies.addAssociation",
-    "resourcemanager.projects.list",
-    "resourcemanager.projects.get",
     "compute.firewallPolicies.copyRules",
     "compute.firewallPolicies.removeAssociation",
     "compute.firewallPolicies.addAssociation",
     "compute.firewallPolicies.move",
-    "compute.oslogin.updateExternalUser",
-    "billing.resourceAssociations.list"])
+    "compute.oslogin.updateExternalUser",])
 }
 
 # Create service account
@@ -44,7 +45,7 @@ data "google_iam_testable_permissions" "unsupported" {
   custom_support_level = "NOT_SUPPORTED"
 }
 
-# Create custom role based on given permissions
+# # Create custom role based on given permissions
 resource "google_project_iam_custom_role" "this" {
   for_each    = var.list_serviceaccount
   role_id     = replace("${each.key}-role", "-", "_")
@@ -53,14 +54,14 @@ resource "google_project_iam_custom_role" "this" {
   contains(local.list_of_excluded_permissions,x) || length(regexall(local.organization_permissions, x)) > 0 ? "" : x])
 }
 
-# Bind role to service account
+# # Bind role to service account
 resource "google_project_iam_member" "this" {
   for_each = var.list_serviceaccount
   role     = google_project_iam_custom_role.this[each.key].id
   member   = "serviceAccount:${google_service_account.this[each.key].email}"
 }
 
-# Generate a key for needed service account
+# # Generate a key for needed service account
 resource "google_service_account_key" "this" {
   for_each = {
     for k, v in var.list_serviceaccount : k => v

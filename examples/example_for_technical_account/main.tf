@@ -25,13 +25,9 @@ module "service_account" {
     "roles/compute.admin",
     "roles/container.admin",
     "roles/dns.admin",
-    "roles/domains.admin",
     "roles/firebase.admin",
     "roles/firebasestorage.admin",
-    "roles/gkehub.admin",
-    "roles/iam.securityAdmin",
     "roles/logging.admin",
-    "roles/memcache.admin",
     "roles/monitoring.admin",
     "roles/networkmanagement.admin",
     "roles/pubsub.admin",
@@ -39,11 +35,10 @@ module "service_account" {
     "roles/run.admin",
     "roles/secretmanager.admin",
     "roles/securitycenter.admin",
-    "roles/servicebroker.admin",
-    "roles/servicenetworking.networksAdmin",
     "roles/storage.admin",
     "roles/vpcaccess.admin",
     "roles/iap.admin",
+    "roles/iam.securityAdmin",
     "roles/iap.httpsResourceAccessor"]
       description      = "Service account for managing IAM roles"
       key              = false
@@ -60,23 +55,23 @@ module "service_account" {
   }
 }
 
-output "service_account_private_key" {
-  value     = module.service_account.service_account_private_key
-  sensitive = true
+# output "service_account_private_key" {
+#   value     = module.service_account.service_account_private_key
+#   sensitive = true
+# }
+
+# output "service_account_public_key" {
+#   value = module.service_account.service_account_public_key
+# }
+
+# output "service_account_email" {
+#   value = module.service_account.service_account_email
+# }
+
+output "member_roles" {
+  value = module.service_account.member_roles
 }
 
-output "service_account_public_key" {
-  value = module.service_account.service_account_public_key
-}
-
-output "service_account_email" {
-  value = module.service_account.service_account_email
-}
-
-output "test_debug_roles" {
-  value = module.service_account.test_debug_roles
-}
-
-output "test_debug_roles_permissions" {
-  value = module.service_account.excluded_permissions
+output "roles" {
+  value = module.service_account.roles
 }
