@@ -37,14 +37,24 @@ locals {
   # Regex used to remove organization specific permissions
   organization_permissions = "^(billing|securitycenter|earlyaccesscenter|riskmanager|compute\\.organizations|chroniclesm|cloudsupport|consumerprocurement|cloudprivatecatalogproducer|accesscontextmanager|assuredworkloads|resourcemanager|orgpolicy|commerceoffercatalog).*$"
 
-  # List of blacklisted roles because their number of permissions is too large
+  # List of blacklisted roles because their number of permissions is too large (For now > 500)
   # If they are present in the service_accounts variable they will be added to the serviceAccount directly
-  roles_blacklist = ["roles/iam.securityAdmin",
-                     "roles/editor",
-                     "roles/owner",
-                     "roles/viewer",
-                     "roles/composer.serviceAgent",
-                     "roles/container.serviceAgent"]
+  roles_blacklist = [
+    "roles/cloudtpu.serviceAgent",
+    "roles/composer.serviceAgent",
+    "roles/composer.worker",
+    "roles/compute.admin",
+    "roles/container.serviceAgent",
+    "roles/dataflow.serviceAgent",
+    "roles/editor",
+    "roles/iam.securityAdmin",
+    "roles/iam.securityReviewer",
+    "roles/notebooks.legacyAdmin",
+    "roles/owner",
+    "roles/securitycenter.controlServiceAgent",
+    "roles/securitycenter.serviceAgent",
+    "roles/viewer",
+  ]
 
   # List of excluded permissions that can't be added at project level
   excluded_permissions = concat(
