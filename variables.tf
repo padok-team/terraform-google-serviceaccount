@@ -1,4 +1,4 @@
-variable "list_serviceaccount" {
+variable "service_accounts" {
   description = "test"
   type = map(object({
     permissions = optional(list(string)),
