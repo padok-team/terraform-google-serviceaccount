@@ -7,7 +7,7 @@ locals {
     [
       for role in v.roles : role if !contains(local.roles_blacklist, role)
     ]
-    ])
+  ])
 
   # Create a map with the serviceAccount name as Key and the list of permissions resulting from the merge of
   # All permissions in each role excluding permissions from local.roles_blacklist
@@ -26,13 +26,13 @@ locals {
   predefined_roles = flatten(
     [
       for k, v in var.service_accounts :
-    [
-      for role in v.roles : {
-      name = k
-      role = role
-      } if contains(local.roles_blacklist, role)
-    ]
-    ])
+      [
+        for role in v.roles : {
+          name = k
+          role = role
+        } if contains(local.roles_blacklist, role)
+      ]
+  ])
 
   # Regex used to remove organization specific permissions
   organization_permissions = "^(billing|securitycenter|earlyaccesscenter|riskmanager|compute\\.organizations|chroniclesm|cloudsupport|consumerprocurement|cloudprivatecatalogproducer|accesscontextmanager|assuredworkloads|resourcemanager|orgpolicy|commerceoffercatalog).*$"
@@ -69,5 +69,5 @@ locals {
       "compute.firewallPolicies.addAssociation",
       "compute.firewallPolicies.move",
       "compute.oslogin.updateExternalUser",
-    ])
+  ])
 }

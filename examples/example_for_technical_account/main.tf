@@ -57,10 +57,10 @@ module "service_account" {
 }
 
 output "roles" {
-  value = module.service_account.custom_roles
+  value = module.service_account.project_iam_custom_roles
 }
 
 output "keys" {
-  value = module.service_account.keys
+  value = module.service_account.service_account_keys
   sensitive= true
 }

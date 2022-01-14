@@ -33,6 +33,7 @@ resource "google_project_iam_custom_role" "this" {
 
 # Bind blacklisted roles directly without including them in the custom role
 resource "google_project_iam_member" "blacklisted_roles" {
+  project = data.google_project.project.id
   for_each = {
     for value in local.predefined_roles : "${value.name}-${value.role}" => value
   }
@@ -42,6 +43,7 @@ resource "google_project_iam_member" "blacklisted_roles" {
 
 # Bind custom role to serviceAccount
 resource "google_project_iam_member" "this" {
+  project  = data.google_project.project.id
   for_each = var.service_accounts
   role     = google_project_iam_custom_role.this[each.key].id
   member   = "serviceAccount:${google_service_account.this[each.key].email}"
