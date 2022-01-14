@@ -61,6 +61,6 @@ output "roles" {
 }
 
 output "keys" {
-  value = module.service_account.service_account_keys
-  sensitive= true
+  value     = module.service_account.service_account_keys
+  sensitive = true
 }
