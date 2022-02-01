@@ -81,7 +81,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | test | <pre>map(object({<br>    permissions = list(string),<br>    roles       = list(string),<br>    key         = optional(bool),<br>    description = string<br>  }))</pre> | n/a | yes |
+| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | test | <pre>map(object({<br>    permissions = optional(list(string)),<br>    roles       = optional(list(string)),<br>    key         = optional(bool),<br>    description = string<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 
