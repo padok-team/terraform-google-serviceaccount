@@ -5,7 +5,7 @@ locals {
   roles = flatten([
     for k, v in var.service_accounts :
     [
-      for role in v.roles : role if !contains(local.roles_blacklist, role) 
+      for role in v.roles : role if !contains(local.roles_blacklist, role)
     ]
     if v.roles != null
   ])
