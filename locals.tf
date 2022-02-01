@@ -17,8 +17,9 @@ locals {
   #  "my-second-sa": ["workflows.locations.get","workflows.locations.list"]
   # }
   permissions = {
-    for k, v in var.service_accounts : k => flatten([for r in [for role in v.roles :
-    role if !contains(local.roles_blacklist, role)] : [flatten(data.google_iam_role.roles[r].included_permissions)]]) if v.roles != null
+    for k, v in var.service_accounts : k => flatten([
+      for r in [for role in v.roles : role if !contains(local.roles_blacklist, role)] : [flatten(data.google_iam_role.roles[r].included_permissions)]
+    ]) if v.roles != null
   }
 
   # Create a list of maps keeping the name of the service account and excluded predefined role for for_each purposes

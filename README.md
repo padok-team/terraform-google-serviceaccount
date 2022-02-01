@@ -8,6 +8,7 @@ Terraform module which creates **Service Account(s)** resources on **CLOUD_PROVI
 
 ## User Stories for this module
 
+- AASRE I can deploy a single service account with no role(s) and permission(s)
 - AASRE I can deploy a single service account with role(s) only
 - AASRE I can deploy a single service account with permission(s) only
 - AASRE I can deploy a single service account with permissions role(s) or permission(s) and a key
@@ -60,7 +61,6 @@ module "my_service_accounts" {
         "cloudsql.instances.get",
         "cloudsql.instances.login"
       ]
-      roles       = []
       description = "Service account for Cloud SQL Instance"
       key         = true
     }

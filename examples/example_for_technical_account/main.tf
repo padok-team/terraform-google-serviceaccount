@@ -45,6 +45,9 @@ module "service_account" {
       key         = false
     }
     "my-second-sa" = {
+      roles = [
+        "roles/apigateway.admin"
+      ]
       description = "Service account for Cloud SQL Instance"
       key         = true
     }
