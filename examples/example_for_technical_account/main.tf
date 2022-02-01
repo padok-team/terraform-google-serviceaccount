@@ -45,11 +45,8 @@ module "service_account" {
       key         = false
     }
     "my-second-sa" = {
-      permissions = [
-        "cloudsql.instances.get",
-        "cloudsql.instances.login"
-      ]
-      roles       = ["projects/padok-cloud-factory/roles/my_first_sa_role"]
+      permissions = []
+      roles       = []
       description = "Service account for Cloud SQL Instance"
       key         = true
     }

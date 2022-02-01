@@ -58,7 +58,9 @@ locals {
 
   # List of excluded permissions that can't be added at project level
   excluded_permissions = concat(
-    [for k, v in data.google_iam_testable_permissions.unsupported.permissions : v.name],
+    [for k, v in data.google_iam_testable_permissions.unsupported.permissions :
+      v.name
+    ],
     [
       "compute.securityPolicies.copyRules",
       "compute.securityPolicies.move",
@@ -69,5 +71,6 @@ locals {
       "compute.firewallPolicies.addAssociation",
       "compute.firewallPolicies.move",
       "compute.oslogin.updateExternalUser",
-  ])
+    ]
+  )
 }
