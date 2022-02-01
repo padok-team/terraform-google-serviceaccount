@@ -45,11 +45,20 @@ module "service_account" {
       key         = false
     }
     "my-second-sa" = {
+      description = "Service account for Cloud SQL Instance"
+      key         = true
+    }
+    "my-third-sa" = {
       roles = [
         "roles/apigateway.admin"
       ]
       description = "Service account for Cloud SQL Instance"
-      key         = true
+    }
+    "my-fourth-sa" = {
+      permissions = [
+        "iam.roles.create"
+      ]
+      description = "Service account for Cloud SQL Instance"
     }
   }
 }
