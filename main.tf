@@ -26,10 +26,10 @@ resource "google_service_account" "this" {
 resource "google_project_iam_custom_role" "this" {
   for_each = {
     for k, v in var.service_accounts : k => v
-    if length(v.permissions) > 0 || length(v.roles) > 0
+    if v.permissions != null || v.roles != null
   }
-  role_id  = replace("${each.key}-role", "-", "_")
-  title    = "${each.key}'s service account role"
+  role_id = replace("${each.key}-role", "-", "_")
+  title   = "${each.key}'s service account role"
   permissions = compact([for x in concat(var.service_accounts[each.key].permissions, local.permissions[each.key]) :
   contains(local.excluded_permissions, x) || length(regexall(local.organization_permissions, x)) > 0 ? "" : x])
 }
@@ -46,13 +46,13 @@ resource "google_project_iam_member" "blacklisted_roles" {
 
 # Bind custom role to serviceAccount
 resource "google_project_iam_member" "this" {
-  project  = data.google_project.project.id
+  project = data.google_project.project.id
   for_each = {
     for k, v in var.service_accounts : k => v
-    if length(v.permissions) > 0 || length(v.roles) > 0
+    if v.permissions != null || v.roles != null
   }
-  role     = google_project_iam_custom_role.this[each.key].id
-  member   = "serviceAccount:${google_service_account.this[each.key].email}"
+  role   = google_project_iam_custom_role.this[each.key].id
+  member = "serviceAccount:${google_service_account.this[each.key].email}"
 }
 
 # Generate a key for needed service account

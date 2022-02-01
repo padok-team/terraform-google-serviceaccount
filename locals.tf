@@ -5,8 +5,9 @@ locals {
   roles = flatten([
     for k, v in var.service_accounts :
     [
-      for role in v.roles : role if !contains(local.roles_blacklist, role)
+      for role in v.roles : role if !contains(local.roles_blacklist, role) 
     ]
+    if v.roles != null
   ])
 
   # Create a map with the serviceAccount name as Key and the list of permissions resulting from the merge of
@@ -17,7 +18,7 @@ locals {
   # }
   permissions = {
     for k, v in var.service_accounts : k => flatten([for r in [for role in v.roles :
-    role if !contains(local.roles_blacklist, role)] : [flatten(data.google_iam_role.roles[r].included_permissions)]])
+    role if !contains(local.roles_blacklist, role)] : [flatten(data.google_iam_role.roles[r].included_permissions)]]) if v.roles != null
   }
 
   # Create a list of maps keeping the name of the service account and excluded predefined role for for_each purposes
@@ -31,7 +32,7 @@ locals {
           name = k
           role = role
         } if contains(local.roles_blacklist, role)
-      ]
+      ] if v.roles != null
   ])
 
   # Regex used to remove organization specific permissions
