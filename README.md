@@ -1,7 +1,6 @@
 # CLOUD_PROVIDER TYPE Terraform module
 
-Terraform module which creates **Service Account(s)** resources on **CLOUD_PROVIDER**. This module is an abstraction of the [MODULE_NAME](https://github.com/a_great_module) by [@someoneverysmart](https://github.com/someoneverysmart).
-
+Terraform module which creates **Service Account(s)** resources on **Google Cloud Platform**. 
 ## License
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
@@ -19,7 +18,7 @@ Terraform module which creates **Service Account(s)** resources on **CLOUD_PROVI
 
 ```hcl
 module "my_service_accounts" {
-  source = "../.."
+  source = "https://github.com/padok-team/terraform-google-serviceaccount"
   service_accounts = {
     "my-first-sa" = {
       permissions = [
@@ -70,7 +69,7 @@ module "my_service_accounts" {
 
 ## Examples
 
-- [Example for technical accounts](examples/example_for_technical_account/main.tf)
+- [Several example for technical accounts](examples/example_for_technical_account/main.tf)
 
 <!-- BEGIN_TF_DOCS -->
 ## Modules
