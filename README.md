@@ -1,4 +1,4 @@
-# CLOUD_PROVIDER TYPE Terraform module
+# Google Terraform module
 
 Terraform module which creates **Service Account(s)** resources on **Google Cloud Platform**. 
 ## License
@@ -69,7 +69,7 @@ module "my_service_accounts" {
 
 ## Examples
 
-- [Several example for technical accounts](examples/example_for_technical_account/main.tf)
+- [Examples for technical accounts](examples/example_for_technical_account/main.tf)
 
 <!-- BEGIN_TF_DOCS -->
 ## Modules
