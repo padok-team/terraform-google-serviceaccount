@@ -88,13 +88,13 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | test | <pre>map(object({<br>    permissions = optional(list(string)),<br>    roles       = optional(list(string)),<br>    key         = optional(bool),<br>    description = string<br>  }))</pre> | n/a | yes |
+| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | The list of service account which will be created by Terraform. You have to provide a description. Permissions, roles and key are optional. | <pre>map(object({<br>    permissions = optional(list(string)),<br>    roles       = optional(list(string)),<br>    key         = optional(bool),<br>    description = string<br>  }))</pre> | n/a | yes |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_project_iam_custom_roles"></a> [project\_iam\_custom\_roles](#output\_project\_iam\_custom\_roles) | n/a |
-| <a name="output_service_account_emails"></a> [service\_account\_emails](#output\_service\_account\_emails) | n/a |
-| <a name="output_service_account_keys"></a> [service\_account\_keys](#output\_service\_account\_keys) | n/a |
+| <a name="output_project_iam_custom_roles"></a> [project\_iam\_custom\_roles](#output\_project\_iam\_custom\_roles) | Custom roles for the project |
+| <a name="output_service_account_emails"></a> [service\_account\_emails](#output\_service\_account\_emails) | Service account emails |
+| <a name="output_service_account_keys"></a> [service\_account\_keys](#output\_service\_account\_keys) | Service account keys |
 <!-- END_TF_DOCS -->
