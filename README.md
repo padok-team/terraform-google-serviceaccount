@@ -18,7 +18,7 @@ Terraform module which creates **Service Account(s)** resources on **Google Clou
 
 ```hcl
 module "service_account" {
-  source = "../.."
+  source = "git@github.com:padok-team/terraform-google-serviceaccount.git"
   service_accounts = {
     "my-first-sa" = {
       permissions = [
