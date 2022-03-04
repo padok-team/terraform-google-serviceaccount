@@ -12,7 +12,7 @@ output "service_account_keys" {
 }
 
 output "service_account_emails" {
-  value = toset([
-    for k in google_service_account.this : k.email
-  ])
+  value = {
+    for k, v in var.service_accounts : k => google_service_account.this[k].email
+  }
 }
