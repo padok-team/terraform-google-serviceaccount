@@ -17,8 +17,8 @@ Terraform module which creates **Service Account(s)** resources on **Google Clou
 ## Usage
 
 ```hcl
-module "my_service_accounts" {
-  source = "https://github.com/padok-team/terraform-google-serviceaccount"
+module "service_account" {
+  source = "git@github.com:padok-team/terraform-google-serviceaccount.git"
   service_accounts = {
     "my-first-sa" = {
       permissions = [
@@ -56,12 +56,20 @@ module "my_service_accounts" {
       key         = false
     }
     "my-second-sa" = {
-      permissions = [
-        "cloudsql.instances.get",
-        "cloudsql.instances.login"
-      ]
       description = "Service account for Cloud SQL Instance"
       key         = true
+    }
+    "my-third-sa" = {
+      roles = [
+        "roles/apigateway.admin"
+      ]
+      description = "Service account for Cloud SQL Instance"
+    }
+    "my-fourth-sa" = {
+      permissions = [
+        "iam.roles.create"
+      ]
+      description = "Service account for Cloud SQL Instance"
     }
   }
 }
