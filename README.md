@@ -88,5 +88,6 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_project_iam_custom_roles"></a> [project\_iam\_custom\_roles](#output\_project\_iam\_custom\_roles) | n/a |
+| <a name="output_service_account_emails"></a> [service\_account\_emails](#output\_service\_account\_emails) | n/a |
 | <a name="output_service_account_keys"></a> [service\_account\_keys](#output\_service\_account\_keys) | n/a |
 <!-- END_TF_DOCS -->

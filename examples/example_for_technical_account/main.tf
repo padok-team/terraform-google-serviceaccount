@@ -71,3 +71,7 @@ output "keys" {
   value     = module.service_account.service_account_keys
   sensitive = true
 }
+
+output "emails" {
+  value = module.service_account.service_account_emails
+}
