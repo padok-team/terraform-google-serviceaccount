@@ -33,8 +33,8 @@ resource "google_project_iam_custom_role" "this" {
   permissions = compact([
     for x in concat(
       lookup(var.service_accounts[each.key], "permissions", null) == null ? [] : var.service_accounts[each.key].permissions,
-      lookup(local.permissions, each.key, [])) :
-        contains(local.excluded_permissions, x) || length(regexall(local.organization_permissions, x)) > 0 ? "" : x
+    lookup(local.permissions, each.key, [])) :
+    contains(local.excluded_permissions, x) || length(regexall(local.organization_permissions, x)) > 0 ? "" : x
   ])
 }
 

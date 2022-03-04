@@ -10,3 +10,9 @@ output "service_account_keys" {
   ])
   sensitive = true
 }
+
+output "service_account_emails" {
+  value = toset([
+    for k in google_service_account.this : k.email
+  ])
+}
