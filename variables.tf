@@ -1,6 +1,6 @@
-variable "names" {
+variable "name" {
   description = ""
-  type        = list(string)
+  type        = string
 }
 
 variable "project_id" {

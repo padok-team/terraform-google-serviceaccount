@@ -14,14 +14,14 @@ resource "google_secret_manager_secret" "secret-basic" {
 }
 
 resource "google_storage_bucket" "bucket-basic" {
-  project   = "library-344516"
-  name          = "bucket-basic"
-  location      = "US"
+  project  = "library-344516"
+  name     = "bucket-basic"
+  location = "US"
 }
 
 module "test_sa" {
   source       = "../.."
-  names         = ["test-sa-new"]
+  name         = "test-sa-new"
   project_id   = "library-344516"
   display_name = "Service Account to test Terraform module"
 
@@ -42,5 +42,5 @@ module "test_sa" {
   ]
   # Should pass name/id output of service_account resource
   service_account_roles = []
-  kubernetes_members = []
+  kubernetes_members    = []
 }

@@ -85,15 +85,19 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | The list of service account which will be created by Terraform. You have to provide a description. Permissions, roles and key are optional. | <pre>map(object({<br>    permissions = optional(list(string)),<br>    roles       = optional(list(string)),<br>    key         = optional(bool),<br>    description = string<br>  }))</pre> | n/a | yes |
+| <a name="input_bucket_roles"></a> [bucket\_roles](#input\_bucket\_roles) | n/a | `list(string)` | n/a | yes |
+| <a name="input_display_name"></a> [display\_name](#input\_display\_name) | n/a | `string` | n/a | yes |
+| <a name="input_external_project_roles"></a> [external\_project\_roles](#input\_external\_project\_roles) | n/a | `list(string)` | n/a | yes |
+| <a name="input_kubernetes_members"></a> [kubernetes\_members](#input\_kubernetes\_members) | n/a | `list(string)` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | n/a | `string` | n/a | yes |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The project to deploy the ressrouces to. | `string` | n/a | yes |
+| <a name="input_project_roles"></a> [project\_roles](#input\_project\_roles) | n/a | `list(string)` | n/a | yes |
+| <a name="input_secret_roles"></a> [secret\_roles](#input\_secret\_roles) | n/a | `list(string)` | n/a | yes |
+| <a name="input_service_account_roles"></a> [service\_account\_roles](#input\_service\_account\_roles) | n/a | `list(string)` | n/a | yes |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_project_iam_custom_roles"></a> [project\_iam\_custom\_roles](#output\_project\_iam\_custom\_roles) | Custom roles for the project |
-| <a name="output_service_account_emails"></a> [service\_account\_emails](#output\_service\_account\_emails) | Service account emails |
-| <a name="output_service_account_keys"></a> [service\_account\_keys](#output\_service\_account\_keys) | Service account keys |
+No outputs.
 <!-- END_TF_DOCS -->
 
 ## License
