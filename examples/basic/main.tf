@@ -42,5 +42,5 @@ module "test_sa" {
   ]
   # Should pass name/id output of service_account resource
   service_account_roles = []
-  kubernetes_members    = []
+  members               = []
 }

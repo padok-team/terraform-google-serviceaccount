@@ -33,7 +33,7 @@ variable "service_account_roles" {
   type        = list(string)
 }
 
-variable "kubernetes_members" {
+variable "members" {
   description = ""
   type        = list(string)
 }
