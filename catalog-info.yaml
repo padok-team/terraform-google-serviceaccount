@@ -1,0 +1,17 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: terraform-google-serviceaccount
+  description: Terraform module which creates GCP service account
+  tags:
+    - "terraform"
+    - "google"
+  annotations:
+    github.com/project-slug: padok-team/terraform-google-serviceaccount
+    backstage.io/techdocs-ref: dir:.
+spec:
+  type: module
+  system: terraform
+  owner: library-gcp
+  lifecycle: awaiting-feedback
+---
