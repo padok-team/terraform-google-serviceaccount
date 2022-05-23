@@ -43,6 +43,6 @@ resource "google_service_account_iam_member" "default" {
 resource "google_service_account_iam_member" "members" {
   for_each           = toset(var.members)
   service_account_id = google_service_account.default.name
-  role               = "roles/iam.workloadIdentityUser"
-  member             = each.value
+  role               = element(split("=>", each.value), 1, )
+  member             = element(split("=>", each.value), 0, )
 }

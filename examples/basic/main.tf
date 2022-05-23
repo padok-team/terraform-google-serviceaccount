@@ -42,5 +42,7 @@ module "test_sa" {
   ]
   # Should pass name/id output of service_account resource
   service_account_roles = []
-  members               = []
+  members = [
+    "serviceAccount:padok-playground.svc.id.goog[system/playground-operator]=>roles/iam.workloadIdentityUser"
+  ]
 }
