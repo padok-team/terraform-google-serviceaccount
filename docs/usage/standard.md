@@ -2,15 +2,10 @@
 
 ## Example
 
-[Link](../../examples/basic/main.tf)
+[Link](https://github.com/padok-team/terraform-google-gke/blob/main/examples/basic/main.tf)
 
 ```terraform
-<!--start-->
-<!--end-->
-```
-
 {%
-   include-markdown "../../examples/basic/main.tf"
-   start="<!--start-->"
-   end="<!--end-->"
+   include "../../examples/basic/main.tf"
 %}
+```
