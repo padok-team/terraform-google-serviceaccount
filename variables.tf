@@ -33,12 +33,12 @@ variable "service_account_roles" {
   type        = list(string)
 }
 
-variable "members" {
-  description = "Defines members that can use this service_account using a role passed like {MEMBER}=>{ROLE}"
+variable "bucket_roles" {
+  description = "Roles that will be set at bucket scope on buckets passed like {BUCKET}=>{ROLE}"
   type        = list(string)
 }
 
-variable "bucket_roles" {
-  description = "Roles that will be set at bucket scope on buckets passed like {BUCKET}=>{ROLE}"
+variable "members" {
+  description = "Defines members that can use this service_account using a role passed like {MEMBER}=>{ROLE}"
   type        = list(string)
 }
