@@ -1,0 +1,14 @@
+---
+site_name: terraform-google-serviceaccount
+
+repo_name: padok-team/terraform-google-serviceaccount
+repo_url: https://github.com/padok-team/terraform-google-serviceaccount
+
+plugins:
+  - techdocs-core
+  - include-markdown
+
+nav:
+  - Usage:
+    - Standard: 'usage/standard.md'
+  - Reference: '../README.md'

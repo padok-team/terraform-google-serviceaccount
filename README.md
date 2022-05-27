@@ -2,80 +2,6 @@
 
 Terraform module which creates **Service Account(s)** resources on **Google Cloud Platform**. 
 
-## User Stories for this module
-
-- AASRE I can deploy a single service account with no role(s) and permission(s)
-- AASRE I can deploy a single service account with role(s) only
-- AASRE I can deploy a single service account with permission(s) only
-- AASRE I can deploy a single service account with permissions role(s) or permission(s) and a key
-- AASRE I can deploy mutiple service accounts with both role(s) and permission(s)
-- AASRE I can deploy mutiple service accounts with role(s), permission(s) and key
-
-## Usage
-
-```hcl
-module "service_account" {
-  source = "git@github.com:padok-team/terraform-google-serviceaccount.git"
-  service_accounts = {
-    "my-first-sa" = {
-      permissions = [
-        "iam.roles.create",
-        "iam.roles.delete",
-        "iam.roles.undelete",
-        "iam.roles.get",
-        "iam.roles.list"
-      ]
-      roles = [
-        "roles/apigateway.admin",
-        "roles/cloudbuild.builds.builder",
-        "roles/cloudfunctions.admin",
-        "roles/cloudsql.admin",
-        "roles/compute.admin",
-        "roles/container.admin",
-        "roles/dns.admin",
-        "roles/firebase.admin",
-        "roles/firebasestorage.admin",
-        "roles/logging.admin",
-        "roles/monitoring.admin",
-        "roles/networkmanagement.admin",
-        "roles/pubsub.admin",
-        "roles/redis.admin",
-        "roles/run.admin",
-        "roles/secretmanager.admin",
-        "roles/securitycenter.admin",
-        "roles/storage.admin",
-        "roles/vpcaccess.admin",
-        "roles/iap.admin",
-        "roles/iam.securityAdmin",
-        "roles/iap.httpsResourceAccessor"
-      ]
-      description = "Service account for managing IAM roles"
-      key         = false
-    }
-    "my-second-sa" = {
-      description = "Service account for Cloud SQL Instance"
-      key         = true
-    }
-    "my-third-sa" = {
-      roles = [
-        "roles/apigateway.admin"
-      ]
-      description = "Service account for Cloud SQL Instance"
-    }
-    "my-fourth-sa" = {
-      permissions = [
-        "iam.roles.create"
-      ]
-      description = "Service account for Cloud SQL Instance"
-    }
-  }
-}
-```
-
-## Examples
-
-- [Examples for technical accounts](examples/example_for_technical_account/main.tf)
-
 <!-- BEGIN_TF_DOCS -->
 ## Modules
 
@@ -85,15 +11,21 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
-| <a name="input_service_accounts"></a> [service\_accounts](#input\_service\_accounts) | The list of service account which will be created by Terraform. You have to provide a description. Permissions, roles and key are optional. | <pre>map(object({<br>    permissions = optional(list(string)),<br>    roles       = optional(list(string)),<br>    key         = optional(bool),<br>    description = string<br>  }))</pre> | n/a | yes |
+| <a name="input_display_name"></a> [display\_name](#input\_display\_name) | Name displayed in the IAM page | `string` | n/a | yes |
+| <a name="input_name"></a> [name](#input\_name) | Name of the service account | `string` | n/a | yes |
+| <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The project to deploy the ressources to. | `string` | n/a | yes |
+| <a name="input_bucket_roles"></a> [bucket\_roles](#input\_bucket\_roles) | Roles that will be set at bucket scope on buckets passed like {BUCKET}=>{ROLE} | `list(string)` | `[]` | no |
+| <a name="input_external_project_roles"></a> [external\_project\_roles](#input\_external\_project\_roles) | Roles that will be set at project scope on projects passed like {PROJECT\_ID}=>{ROLE} | `list(string)` | `[]` | no |
+| <a name="input_members"></a> [members](#input\_members) | Defines members that can use this service\_account using a role passed like {MEMBER}=>{ROLE} | `list(string)` | `[]` | no |
+| <a name="input_project_roles"></a> [project\_roles](#input\_project\_roles) | Roles that will be set at project scope on project\_id provided variable | `list(string)` | `[]` | no |
+| <a name="input_secret_roles"></a> [secret\_roles](#input\_secret\_roles) | Roles that will be set at secret scope on secrets passed like {SECRET\_ID}=>{ROLE} | `list(string)` | `[]` | no |
+| <a name="input_service_account_roles"></a> [service\_account\_roles](#input\_service\_account\_roles) | Roles that will be set at service\_account scope on service\_account passed like {SERVICE\_ACCOUNT\_ID}=>{ROLE} | `list(string)` | `[]` | no |
 
 ## Outputs
 
 | Name | Description |
 |------|-------------|
-| <a name="output_project_iam_custom_roles"></a> [project\_iam\_custom\_roles](#output\_project\_iam\_custom\_roles) | Custom roles for the project |
-| <a name="output_service_account_emails"></a> [service\_account\_emails](#output\_service\_account\_emails) | Service account emails |
-| <a name="output_service_account_keys"></a> [service\_account\_keys](#output\_service\_account\_keys) | Service account keys |
+| <a name="output_this"></a> [this](#output\_this) | Service Account attributes |
 <!-- END_TF_DOCS -->
 
 ## License
