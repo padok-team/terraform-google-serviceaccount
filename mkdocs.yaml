@@ -11,4 +11,4 @@ plugins:
 nav:
   - Usage:
     - Standard: 'usage/standard.md'
-  - Reference: '../README.md'
+  - Reference: 'index.md'
