@@ -1,4 +1,4 @@
-output "service_account" {
-  value       = google_service_account.default
+output "this" {
+  value       = google_service_account.this
   description = "Service Account attributes"
 }
