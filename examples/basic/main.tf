@@ -14,6 +14,11 @@ resource "google_secret_manager_secret" "secret-basic" {
 }
 
 resource "google_storage_bucket" "bucket-basic" {
+  # All those rules are not relevant for this example
+  #checkov:skip=CKV_GCP_78:Ensure Cloud storage has versioning enabled
+  #checkov:skip=CKV_GCP_29:Ensure that Cloud Storage buckets have uniform bucket-level access enabled
+  #checkov:skip=CKV_GCP_114:Ensure public access prevention is enforced on Cloud Storage bucket
+  #checkov:skip=CKV_GCP_62:Bucket should log access
   project  = "library-344516"
   name     = "bucket-basic"
   location = "US"
