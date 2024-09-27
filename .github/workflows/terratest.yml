@@ -2,6 +2,9 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - "**.tf"
+      - "test/*.go"
 name: terratest
 jobs:
   terratest:
