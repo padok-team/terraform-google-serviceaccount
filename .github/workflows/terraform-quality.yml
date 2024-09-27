@@ -2,6 +2,8 @@ on:
   pull_request:
     branches:
       - main
+    paths:
+      - "**.tf"
 name: terraform-quality
 jobs:
   terraform-quality:
