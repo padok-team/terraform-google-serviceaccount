@@ -3,7 +3,7 @@ module github.com/padok-team/terraform-google-serviceaccount
 go 1.22.4
 
 require (
-	github.com/gruntwork-io/terratest v0.47.1
+	github.com/gruntwork-io/terratest v0.47.2
 	github.com/stretchr/testify v1.9.0 // indirect
 )
 
